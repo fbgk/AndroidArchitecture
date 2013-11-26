@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.arqand.android</groupId>
+	<artifactId>org.arqand.android.parent</artifactId>
+	<version>0.0.1.RELEASE</version>
+	<packaging>pom</packaging>
+	
+	<name>Parent ArqAnd Android Project</name>
+	<description>
+		The Parent Project manage versions, plugin and modules
+	</description>
+
+	<developers>
+		<developer>
+			<name>Francisco Benítez García</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<email>franfbg@gmail.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<!-- Version android -->
+		<version.com.google.android>4.1.1.4</version.com.google.android>
+		<plataform.android>8</plataform.android>
+		<!-- RoboGuice -->
+		<version.roboguice>2.0</version.roboguice>
+		<!-- RoboGuice - ActionBarSherlock -->
+		<version.roboguice.sherlock>1.5</version.roboguice.sherlock>
+		<!-- ActionBarSherlock -->
+		<version.actionbarsherlock>4.3.1</version.actionbarsherlock>
+		<!-- Maven -->
+		<version.maven.source.plugin>2.1.2</version.maven.source.plugin>
+		<version.com.maven.pluging>3.5.3</version.com.maven.pluging>
+		<version.maven.compiler>3.1</version.maven.compiler>
+		<!-- JDK -->
+		<version.jdk>1.6</version.jdk>
+		<!-- Android Plugin -->
+		<version.android.plugin>3.6.0</version.android.plugin>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.android</groupId>
+				<artifactId>android</artifactId>
+				<version>${version.com.google.android}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.roboguice</groupId>
+				<artifactId>roboguice</artifactId>
+				<version>${version.roboguice}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.rtyley</groupId>
+				<artifactId>roboguice-sherlock</artifactId>
+				<version>${version.roboguice.sherlock}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.actionbarsherlock</groupId>
+				<artifactId>actionbarsherlock</artifactId>
+				<version>${version.actionbarsherlock}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.arqand.fbgk</groupId>
+				<artifactId>org.arqand.fbgk.core</artifactId>
+				<version>${version.arq.core}</version>
+			</dependency>
+			<dependency>
+				<groupId>androrm</groupId>
+				<artifactId>androrm</artifactId>
+				<version>${version.androrm}</version>
+				<systemPath>D:/Android/workspace/ArquitecturaAndroidORM/libs/androrm.jar</systemPath>
+				<scope>system</scope>
+				<type>jar</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>../org.arqand.android.core</module>
+		<module>../org.arqand.android.injection</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${version.maven.source.plugin}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.maven.compiler}</version>
+					<configuration>
+						<source>${version.jdk}</source>
+						<target>${version.jdk}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+					<artifactId>android-maven-plugin</artifactId>
+					<version>${version.android.plugin}</version>
+					<configuration>
+						<sdk>
+							<path>${env.ANDROID_HOME}</path>
+							<platform>${plataform.android}</platform>
+						</sdk>
+						<undeployBeforeDeploy>true</undeployBeforeDeploy>
+					</configuration>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<configuration>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+							</manifest>
+						</archive>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-assembly</id>
+							<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
