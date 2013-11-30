@@ -26,16 +26,16 @@ import android.view.View;
 public class InitCacheServiceImpl implements InitCacheService {
 
 	/** The Constant NAME_VIEW_INJECTION. */
-	private static final String NAME_VIEW_INJECTION = "getInformation";
+	private static final String				NAME_VIEW_INJECTION			= "getInformation";
 
 	/** The cache conversion service. */
-	private final CacheConversionService cacheConversionService = new CacheConversionServiceImpl();
+	private final CacheConversionService	cacheConversionService		= new CacheConversionServiceImpl();
 
 	/** The cache injection dto service. */
-	private final CacheInjectionDTOService cacheInjectionDTOService = new CacheInjectionDTOServiceImpl();
+	private final CacheInjectionDTOService	cacheInjectionDTOService	= new CacheInjectionDTOServiceImpl();
 
 	/** The cache injection view service. */
-	private final CacheInjectionViewService cacheInjectionViewService = new CacheInjectionViewServiceImpl();
+	private final CacheInjectionViewService	cacheInjectionViewService	= new CacheInjectionViewServiceImpl();
 
 	/**
 	 * Creates the information.
@@ -66,11 +66,11 @@ public class InitCacheServiceImpl implements InitCacheService {
 
 					final Class<?> clazzReturn = CommonsReflections.returnMethodClass(viewInjectionService, NAME_VIEW_INJECTION);
 
-					final ConversionType<?, ?> conversionTypeDTOToView = this.cacheConversionService.getConversion(clazzReturn, fieldCacheDTO.getField().getType());
+					final ConversionType<?, ?> conversionTypeDTOToView = this.cacheConversionService.getConversion(fieldCacheDTO.getField().getType(), clazzReturn);
 
 					if (conversionTypeDTOToView != null) {
 
-						final ConversionType<?, ?> conversionTypeViewToDTO = this.cacheConversionService.getConversion(fieldCacheDTO.getField().getType(), clazzReturn);
+						final ConversionType<?, ?> conversionTypeViewToDTO = this.cacheConversionService.getConversion(clazzReturn, fieldCacheDTO.getField().getType());
 
 						if (conversionTypeViewToDTO != null) {
 							informationCacheDTO = new InformationCacheDTO();

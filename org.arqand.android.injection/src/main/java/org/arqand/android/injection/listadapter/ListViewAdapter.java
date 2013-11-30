@@ -1,7 +1,9 @@
 package org.arqand.android.injection.listadapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.arqand.android.commons.activity.CommonsActivity;
 import org.arqand.android.commons.injection.CommonsInjection;
@@ -31,7 +33,7 @@ public class ListViewAdapter<T> extends ArrayAdapter<T> {
 	private final List<T> listAdapter;
 
 	/** The list view. Cache */
-	private final List<View> listView;
+	private final Map<Integer,View> mapView;
 
 	/** The view id. */
 	private final int viewId;
@@ -48,7 +50,7 @@ public class ListViewAdapter<T> extends ArrayAdapter<T> {
 		super(CommonsActivity.getActivity(), resource, loadList);
 		this.listAdapter = loadList;
 		this.viewId = resource;
-		this.listView = new ArrayList<View>(loadList.size());
+		this.mapView = new HashMap<Integer, View>(loadList.size());
 		Log.i(TAG, "Load ListViewAdapter");
 	}
 
@@ -61,13 +63,14 @@ public class ListViewAdapter<T> extends ArrayAdapter<T> {
 	@Override
 	public View getView(final int position, View convertView, final ViewGroup parent) {
 		Log.i(TAG, "Load Data");
-		if (this.listView.get(position) != null) {
+		if (this.mapView.get(position) != null) {
 			Log.i(TAG, "Load Cache");
-			convertView = this.listView.get(position);
+			convertView = this.mapView.get(position);
 		} else {
 			Log.i(TAG, "Load View Inject");
 			convertView = this.layoutInflater.inflate(this.viewId, null);
-			CommonsInjection.injectionReflectionService.setterVisual(this.listAdapter.get(position), convertView);
+			CommonsInjection.getInjectionReflectionService().setterVisual(this.listAdapter.get(position), convertView);
+			this.mapView.put(Integer.valueOf(position), convertView);
 		}
 		return convertView;
 	}

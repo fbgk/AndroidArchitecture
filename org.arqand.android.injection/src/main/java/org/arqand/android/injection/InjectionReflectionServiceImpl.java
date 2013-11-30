@@ -37,10 +37,10 @@ import android.view.View;
 public class InjectionReflectionServiceImpl implements InjectionReflectionService {
 
 	/** The cache injection service. */
-	private final CacheFinalService cacheFinalService = new CacheFinalServiceImpl();
+	private final CacheFinalService	cacheFinalService	= new CacheFinalServiceImpl();
 
 	/** The init cache service. */
-	private final InitCacheService initCacheService = new InitCacheServiceImpl();
+	private final InitCacheService	initCacheService	= new InitCacheServiceImpl();
 
 	/**
 	 * Instantiates a new injection reflection service impl.
@@ -107,7 +107,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 
 				if (informationCacheDTO.getConversionTypeViewToDTO() != null) {
 
-					field = ((ConversionType<L, M>) informationCacheDTO.getConversionTypeViewToDTO()).conversion((M) object);
+					field = ((ConversionType<L, M>) informationCacheDTO.getConversionTypeViewToDTO()).conversion((M) field);
 
 				}
 
@@ -234,7 +234,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 
 					if (informationCacheDTO.getConversionTypeDTOToView() != null) {
 
-						data = ((ConversionType<L, T>) informationCacheDTO.getConversionTypeViewToDTO()).conversion((T) data);
+						data = ((ConversionType<L, T>) informationCacheDTO.getConversionTypeDTOToView()).conversion((T) data);
 					}
 
 					((ViewInjectionService<M, L>) informationCacheDTO.getViewInjectionService()).setInformation((M) view.findViewById(informationCacheDTO.getViewId()), (L) data);

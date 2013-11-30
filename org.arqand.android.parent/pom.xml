@@ -51,32 +51,9 @@
 				<version>${version.com.google.android}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.roboguice</groupId>
-				<artifactId>roboguice</artifactId>
-				<version>${version.roboguice}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.github.rtyley</groupId>
-				<artifactId>roboguice-sherlock</artifactId>
-				<version>${version.roboguice.sherlock}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.actionbarsherlock</groupId>
-				<artifactId>actionbarsherlock</artifactId>
-				<version>${version.actionbarsherlock}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.arqand.fbgk</groupId>
 				<artifactId>org.arqand.fbgk.core</artifactId>
 				<version>${version.arq.core}</version>
-			</dependency>
-			<dependency>
-				<groupId>androrm</groupId>
-				<artifactId>androrm</artifactId>
-				<version>${version.androrm}</version>
-				<systemPath>D:/Android/workspace/ArquitecturaAndroidORM/libs/androrm.jar</systemPath>
-				<scope>system</scope>
-				<type>jar</type>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -84,6 +61,7 @@
 	<modules>
 		<module>../org.arqand.android.core</module>
 		<module>../org.arqand.android.injection</module>
+		<module>../org.arqand.android.injection.modal</module>
 	</modules>
 
 	<build>

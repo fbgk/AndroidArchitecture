@@ -8,6 +8,25 @@ import org.arqand.android.injection.api.InjectionReflectionService;
 public class CommonsInjection {
 
 	/** The injection reflection service. */
-	public static InjectionReflectionService injectionReflectionService;
+	private static InjectionReflectionService injectionReflectionService;
+
+	/**
+	 * Gets the injection reflection service.
+	 *
+	 * @return the injection reflection service
+	 */
+	public static InjectionReflectionService getInjectionReflectionService() {
+		return injectionReflectionService;
+	}
+
+	/**
+	 * Sets the injection reflection service.
+	 *
+	 * @param injectionReflectionService the new injection reflection service
+	 */
+	public static void setInjectionReflectionService(
+			InjectionReflectionService injectionReflectionService) {
+		CommonsInjection.injectionReflectionService = injectionReflectionService;
+	}
 
 }
