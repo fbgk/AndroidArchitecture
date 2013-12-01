@@ -34,13 +34,13 @@
 		<!-- ActionBarSherlock -->
 		<version.actionbarsherlock>4.3.1</version.actionbarsherlock>
 		<!-- Maven -->
-		<version.maven.source.plugin>2.1.2</version.maven.source.plugin>
+		<version.maven.source.plugin>2.2.1</version.maven.source.plugin>
 		<version.com.maven.pluging>3.5.3</version.com.maven.pluging>
 		<version.maven.compiler>3.1</version.maven.compiler>
 		<!-- JDK -->
 		<version.jdk>1.6</version.jdk>
 		<!-- Android Plugin -->
-		<version.android.plugin>3.6.0</version.android.plugin>
+		<version.android.plugin>3.8.0</version.android.plugin>
 	</properties>
 
 	<dependencyManagement>
@@ -62,6 +62,7 @@
 		<module>../org.arqand.android.core</module>
 		<module>../org.arqand.android.injection</module>
 		<module>../org.arqand.android.injection.modal</module>
+		<module>../org.arqand.android.animation</module>
 	</modules>
 
 	<build>
@@ -96,7 +97,7 @@
 					<version>${version.android.plugin}</version>
 					<configuration>
 						<sdk>
-							<path>${env.ANDROID_HOME}</path>
+							<path>/home/fbgk/Android/sdk/</path>
 							<platform>${plataform.android}</platform>
 						</sdk>
 						<undeployBeforeDeploy>true</undeployBeforeDeploy>
