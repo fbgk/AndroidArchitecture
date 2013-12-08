@@ -6,7 +6,10 @@ public class FloatToString implements ConversionType<String, Float> {
 
 	@Override
 	public String conversion(final Float object) {
-		return object.toString();
+		String string = "";
+		if (object != null) {
+			string = object.toString();
+		}
+		return string;
 	}
-
 }

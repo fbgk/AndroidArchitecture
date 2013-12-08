@@ -8,7 +8,11 @@ public class StringToBigDecimal implements ConversionType<BigDecimal, String> {
 
 	@Override
 	public BigDecimal conversion(final String object) {
-		return new BigDecimal(object);
+		BigDecimal bigDecimal = null;
+		if (object != null && !object.isEmpty()) {
+			bigDecimal = new BigDecimal(object);
+		}
+		return bigDecimal;
 	}
 
 }

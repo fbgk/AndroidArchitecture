@@ -6,6 +6,7 @@ import org.arqand.android.injection.api.ConversionType;
 import org.arqand.android.injection.api.InitCacheService;
 import org.arqand.android.injection.api.InjectionReflectionService;
 import org.arqand.android.injection.api.ViewInjectionService;
+import org.arqand.android.injection.api.dto.FieldCacheDTO;
 import org.arqand.android.injection.api.dto.InformationCacheDTO;
 import org.arqand.android.injection.api.dto.InjectionFinalCacheDTO;
 import org.arqand.android.injection.cache.CacheFinalServiceImpl;
@@ -55,8 +56,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.arqand.android.injection.api.InjectionReflectionService#
-	 * factoryConversionType(org.arqand.android.injection.api.ConversionType[])
+	 * @see org.arqand.android.injection.api.InjectionReflectionService# factoryConversionType(org.arqand.android.injection.api.ConversionType[])
 	 */
 	@Override
 	public void factoryConversionType(final ConversionType<?, ?>... conversionType) {
@@ -66,9 +66,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.arqand.android.injection.api.InjectionReflectionService#
-	 * factoryInjectionView
-	 * (org.arqand.android.injection.api.ViewInjectionService[])
+	 * @see org.arqand.android.injection.api.InjectionReflectionService# factoryInjectionView (org.arqand.android.injection.api.ViewInjectionService[])
 	 */
 	@Override
 	public void factoryInjectionView(final ViewInjectionService<?, ?>... injectionServices) {
@@ -98,21 +96,21 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 		T object = null;
 
 		if (injectionFinalCacheDTO != null) {
-
 			object = (T) CommonsReflections.createInstance(injectionFinalCacheDTO.getClassDTO());
 
-			for (final InformationCacheDTO informationCacheDTO : injectionFinalCacheDTO.getListInformation()) {
+			if (object != null) {
+				for (final InformationCacheDTO informationCacheDTO : injectionFinalCacheDTO.getListInformation()) {
+					Object field = ((ViewInjectionService<K, M>) informationCacheDTO.getViewInjectionService()).getInformation((K) view.findViewById(informationCacheDTO.getViewId()));
 
-				Object field = ((ViewInjectionService<K, M>) informationCacheDTO.getViewInjectionService()).getInformation((K) view.findViewById(informationCacheDTO.getViewId()));
+					if (informationCacheDTO.getConversionTypeViewToDTO() != null) {
 
-				if (informationCacheDTO.getConversionTypeViewToDTO() != null) {
+						field = ((ConversionType<L, M>) informationCacheDTO.getConversionTypeViewToDTO()).conversion((M) field);
 
-					field = ((ConversionType<L, M>) informationCacheDTO.getConversionTypeViewToDTO()).conversion((M) field);
-
+					}
+					if (field != null) {
+						CommonsReflections.invokeSetter(informationCacheDTO.getFieldCacheDTO().getMethodSet(), object, field);
+					}
 				}
-
-				CommonsReflections.invokeSetter(informationCacheDTO.getFieldCacheDTO().getMethodSet(), object, field);
-
 			}
 		}
 
@@ -122,9 +120,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.api.InjectionService#getterVisual(java.lang
-	 * .Class)
+	 * @see org.arqand.android.injection.api.InjectionService#getterVisual(java.lang .Class)
 	 */
 	@Override
 	public <T> T getterVisual(final Class<?> clazz) {
@@ -137,9 +133,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.api.InjectionService#getterVisual(java.lang
-	 * .Class, android.view.View)
+	 * @see org.arqand.android.injection.api.InjectionService#getterVisual(java.lang .Class, android.view.View)
 	 */
 	@Override
 	public <T> T getterVisual(final Class<?> clazz, final View view) {
@@ -148,8 +142,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	}
 
 	/**
-	 * Search the DTO in the cache, but found, creates a new one and puts it in
-	 * the cache.
+	 * Search the DTO in the cache, but found, creates a new one and puts it in the cache.
 	 * 
 	 * @param clazz
 	 *            the clazz
@@ -178,9 +171,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.api.InjectionService#setterVisual(java.lang
-	 * .Object)
+	 * @see org.arqand.android.injection.api.InjectionService#setterVisual(java.lang .Object)
 	 */
 	@Override
 	public void setterVisual(final Object object) {
@@ -194,9 +185,7 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.api.InjectionService#setterVisual(java.lang
-	 * .Object, android.view.View)
+	 * @see org.arqand.android.injection.api.InjectionService#setterVisual(java.lang .Object, android.view.View)
 	 */
 	@Override
 	public void setterVisual(final Object object, final View view) {
@@ -225,19 +214,19 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	private <T, L, M> void setView(final Object object, final InjectionFinalCacheDTO injectionFinalCacheDTO, final View view) {
 
 		if (injectionFinalCacheDTO != null) {
-
 			for (final InformationCacheDTO informationCacheDTO : injectionFinalCacheDTO.getListInformation()) {
 
-				if (!informationCacheDTO.getFieldCacheDTO().getVisual().isPassword()) {
+				FieldCacheDTO fieldCacheDTO = informationCacheDTO.getFieldCacheDTO();
+				if (!fieldCacheDTO.getVisual().isPassword()) {
 
-					Object data = CommonsReflections.returnValue(object, informationCacheDTO.getFieldCacheDTO().getMethodGet());
-
+					Object data = CommonsReflections.returnValue(object, fieldCacheDTO.getMethodGet());
 					if (informationCacheDTO.getConversionTypeDTOToView() != null) {
 
 						data = ((ConversionType<L, T>) informationCacheDTO.getConversionTypeDTOToView()).conversion((T) data);
 					}
-
-					((ViewInjectionService<M, L>) informationCacheDTO.getViewInjectionService()).setInformation((M) view.findViewById(informationCacheDTO.getViewId()), (L) data);
+					if (data != null) {
+						((ViewInjectionService<M, L>) informationCacheDTO.getViewInjectionService()).setInformation((M) view.findViewById(informationCacheDTO.getViewId()), (L) data);
+					}
 				}
 			}
 		}

@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import android.util.Log;
+import org.arqand.android.commons.activity.CommonsActivity;
+
+import android.content.Context;
 
 /**
  * Created by fbgk on 12/11/2013
@@ -18,13 +20,10 @@ import android.util.Log;
 public class CommonsReflections {
 
 	/** The Constant GETTER_CONSTANT. */
-	private static final String GETTER_CONSTANT = "get";
+	private static final String	GETTER_CONSTANT	= "get";
 
 	/** The Constant SETTER_CONSTANT. */
-	private static final String SETTER_CONSTANT = "set";
-
-	/** The Constant TAG. */
-	private static final String TAG = "ReflectionsUtils";
+	private static final String	SETTER_CONSTANT	= "set";
 
 	/**
 	 * New instance's class.
@@ -36,15 +35,34 @@ public class CommonsReflections {
 	 * @return a instance for class or null
 	 */
 	public static <T> T createInstance(final Class<T> clazz) {
-		Log.i(TAG, "Create instance");
+
 		T object = null;
 		try {
 			object = clazz.newInstance();
+
 		} catch (final InstantiationException e) {
 			e.printStackTrace();
 		} catch (final IllegalAccessException e) {
 			e.printStackTrace();
 		}
+		if (object == null) {
+			try {
+				object = clazz.getDeclaredConstructor(Context.class).newInstance(CommonsActivity.getActivity());
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return object;
 	}
 
@@ -58,7 +76,7 @@ public class CommonsReflections {
 	 * @return the method to retrieve the object
 	 */
 	public static Method getterMethod(final String field, final Object object) {
-		Log.i(TAG, "Getter Method");
+
 		return methodGetter(GETTER_CONSTANT, field, object);
 	}
 
@@ -73,7 +91,7 @@ public class CommonsReflections {
 	 *            Value of the object.
 	 */
 	public static void invokeSetter(final Field field, final Object source, final Object objeto) {
-		Log.i(TAG, "Invoke setter.");
+
 		try {
 			final Method metodo = methodGetter(SETTER_CONSTANT, field.getName(), source);
 			if (metodo != null) {
@@ -97,7 +115,7 @@ public class CommonsReflections {
 	 *            Value of the object.
 	 */
 	public static void invokeSetter(final Method metodo, final Object object, final Object objeto) {
-		Log.i(TAG, "Invoke setter.");
+
 		try {
 			metodo.invoke(object, objeto);
 		} catch (final IllegalAccessException e) {
@@ -123,7 +141,7 @@ public class CommonsReflections {
 		Method method = null;
 		Class<?> clazz;
 		if (object instanceof Class<?>) {
-			clazz = ((Class<?>) object);
+			clazz = (Class<?>) object;
 		} else {
 			clazz = object.getClass();
 		}
@@ -135,7 +153,7 @@ public class CommonsReflections {
 			} else {
 
 				final Iterator<Method> iterator = Arrays.asList(clazz.getDeclaredMethods()).iterator();
-				while (iterator.hasNext() && (method == null)) {
+				while (iterator.hasNext() && method == null) {
 
 					final Method comparator = iterator.next();
 
@@ -163,9 +181,9 @@ public class CommonsReflections {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Annotation> T returnAnnotation(final Class<? extends Annotation> anotacion, final Field field) {
-		Log.i(TAG, "Getter Annotation");
+
 		T respuesta = null;
-		if ((anotacion != null) && (field != null)) {
+		if (anotacion != null && field != null) {
 			if (field.isAnnotationPresent(anotacion)) {
 				respuesta = (T) field.getAnnotation(anotacion);
 			}
@@ -186,9 +204,9 @@ public class CommonsReflections {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Annotation> T returnAnnotation(final Class<?> clazz, final Class<? extends Annotation> annotation) {
-		Log.i(TAG, "Getter Annotation");
+
 		T respuesta = null;
-		if ((annotation != null) && (clazz != null)) {
+		if (annotation != null && clazz != null) {
 			if (clazz.isAnnotationPresent(annotation)) {
 				respuesta = (T) clazz.getAnnotation(annotation);
 			}
@@ -227,9 +245,9 @@ public class CommonsReflections {
 		try {
 			field = clazz.getDeclaredField(name);
 		} catch (final SecurityException e) {
-			Log.e(TAG, e.getMessage());
+
 		} catch (final NoSuchFieldException e) {
-			Log.e(TAG, e.getMessage());
+
 		}
 		return field;
 	}
@@ -271,7 +289,7 @@ public class CommonsReflections {
 		final Method[] metodos = object.getClass().getMethods();
 		Boolean bandera = Boolean.FALSE;
 		Class<?> clazzs = null;
-		for (int x = 0; (x < metodos.length) && !bandera; x++) {
+		for (int x = 0; x < metodos.length && !bandera; x++) {
 			if (metodos[x].getName().equals(method) && !metodos[x].isBridge()) {
 				bandera = Boolean.TRUE;
 				clazzs = metodos[x].getReturnType();
@@ -290,7 +308,7 @@ public class CommonsReflections {
 	 * @return the field object or null
 	 */
 	public static Object returnValue(final Object objeto, final Field field) {
-		Log.i(TAG, "Getter Value. Object, field.");
+
 		Object object = null;
 		final Method metodo = returnMethod(field, objeto);
 		if (metodo != null) {
@@ -309,7 +327,7 @@ public class CommonsReflections {
 	 * @return the field object or null
 	 */
 	public static Object returnValue(final Object baseDTO, final Method method) {
-		Log.i(TAG, "Getter Value. Object Method");
+
 		Object objeto = null;
 		try {
 			objeto = method.invoke(baseDTO);
@@ -358,7 +376,7 @@ public class CommonsReflections {
 	 * @return the method to retrieve the object
 	 */
 	public static Method setterMethod(final Field field, final Object object) {
-		Log.i(TAG, "Setter Method");
+
 		return methodGetter(SETTER_CONSTANT, field.getName(), object);
 	}
 
@@ -372,7 +390,7 @@ public class CommonsReflections {
 	 * @return the method to retrieve the object
 	 */
 	public static Method setterMethod(final String field, final Object object) {
-		Log.i(TAG, "Setter Method");
+
 		return methodGetter(SETTER_CONSTANT, field, object);
 	}
 
@@ -394,7 +412,7 @@ public class CommonsReflections {
 		try {
 			Method method = null;
 			final Method[] methods = object.getClass().getMethods();
-			for (int x = 0; (x < methods.length) && (method == null); x++) {
+			for (int x = 0; x < methods.length && method == null; x++) {
 				if (methods[x].getName().equals(method) && !methods[x].isBridge()) {
 					method = methods[x];
 				}
@@ -421,7 +439,7 @@ public class CommonsReflections {
 		final Method[] methods = object.getClass().getMethods();
 		Boolean flags = Boolean.FALSE;
 		Class<?>[] clazzs = null;
-		for (int x = 0; (x < methods.length) && !flags; x++) {
+		for (int x = 0; x < methods.length && !flags; x++) {
 			if (methods[x].getName().equals(method) && !methods[x].isBridge()) {
 				flags = Boolean.TRUE;
 				clazzs = methods[x].getParameterTypes();

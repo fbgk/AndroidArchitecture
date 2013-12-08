@@ -6,7 +6,11 @@ public class LongToString implements ConversionType<String, Long> {
 
 	@Override
 	public String conversion(final Long object) {
-		return object.toString();
+		String string = "";
+		if (object != null) {
+			string = object.toString();
+		}
+		return string;
 	}
 
 }

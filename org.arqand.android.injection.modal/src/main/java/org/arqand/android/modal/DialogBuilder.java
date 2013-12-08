@@ -36,6 +36,8 @@ public class DialogBuilder implements OnClickListener {
 	/** The icon. */
 	private int				icon;
 
+	private LoadDialog		loadDialog;
+
 	/** The message. */
 	private int				message;
 
@@ -57,7 +59,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the message. Message for modal.
 	 */
 	public DialogBuilder(final int button, final int message) {
-		this.build(0, button, 0, message, null, null, 0, null, 0);
+		this.build(0, button, 0, message, null, null, 0, null, 0, null);
 		this.show();
 	}
 
@@ -72,7 +74,22 @@ public class DialogBuilder implements OnClickListener {
 	 *            the dto
 	 */
 	public DialogBuilder(final int button, final int view, final DialogDTO<?> dto) {
-		this.build(0, button, 0, 0, null, null, view, dto, 0);
+		this.build(0, button, 0, 0, null, null, view, dto, 0, null);
+		this.show();
+	}
+
+	/**
+	 * Instantiates a new dialog builder.
+	 * 
+	 * @param button
+	 *            the button left
+	 * @param view
+	 *            the view
+	 * @param dto
+	 *            the dto
+	 */
+	public DialogBuilder(final int button, final int view, final DialogDTO<?> dto, LoadDialog loadDialog) {
+		this.build(0, button, 0, 0, null, null, view, dto, 0, loadDialog);
 		this.show();
 	}
 
@@ -87,7 +104,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the message. Message for modal.
 	 */
 	public DialogBuilder(final int title, final int button, final int message) {
-		this.build(title, button, 0, message, null, null, 0, null, 0);
+		this.build(title, button, 0, message, null, null, 0, null, 0, null);
 		this.show();
 	}
 
@@ -104,7 +121,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the dto
 	 */
 	public DialogBuilder(final int title, final int button, final int view, final DialogDTO<?> dto) {
-		this.build(title, button, 0, 0, null, null, view, dto, 0);
+		this.build(title, button, 0, 0, null, null, view, dto, 0, null);
 		this.show();
 	}
 
@@ -123,7 +140,43 @@ public class DialogBuilder implements OnClickListener {
 	 *            the icon
 	 */
 	public DialogBuilder(final int title, final int button, final int view, final DialogDTO<?> dto, final int icon) {
-		this.build(title, button, 0, 0, null, null, view, dto, icon);
+		this.build(title, button, 0, 0, null, null, view, dto, icon, null);
+		this.show();
+	}
+
+	/**
+	 * Instantiates a new dialog builder.
+	 * 
+	 * @param title
+	 *            the title
+	 * @param button
+	 *            the button
+	 * @param view
+	 *            the view
+	 * @param dto
+	 *            the dto
+	 * @param icon
+	 *            the icon
+	 */
+	public DialogBuilder(final int title, final int button, final int view, final DialogDTO<?> dto, final int icon, LoadDialog loadDialog) {
+		this.build(title, button, 0, 0, null, null, view, dto, icon, loadDialog);
+		this.show();
+	}
+
+	/**
+	 * Instantiates a new dialog builder.
+	 * 
+	 * @param title
+	 *            the title
+	 * @param button
+	 *            the button left
+	 * @param view
+	 *            the view
+	 * @param dto
+	 *            the dto
+	 */
+	public DialogBuilder(final int title, final int button, final int view, final DialogDTO<?> dto, LoadDialog loadDialog) {
+		this.build(title, button, 0, 0, null, null, view, dto, 0, loadDialog);
 		this.show();
 	}
 
@@ -140,7 +193,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the icon
 	 */
 	public DialogBuilder(final int title, final int button, final int message, final int icon) {
-		this.build(title, button, 0, message, null, null, 0, null, icon);
+		this.build(title, button, 0, message, null, null, 0, null, icon, null);
 		this.show();
 	}
 
@@ -159,7 +212,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the dto
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int view, final DialogDTO<?> dto) {
-		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, 0);
+		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, 0, null);
 		this.show();
 	}
 
@@ -180,7 +233,47 @@ public class DialogBuilder implements OnClickListener {
 	 *            the icon
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int view, final DialogDTO<?> dto, final int icon) {
-		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, icon);
+		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, icon, null);
+		this.show();
+	}
+
+	/**
+	 * Instantiates a new dialog builder.
+	 * 
+	 * @param title
+	 *            the title
+	 * @param buttonLeft
+	 *            the button left
+	 * @param buttonRight
+	 *            the button right
+	 * @param view
+	 *            the view
+	 * @param dto
+	 *            the dto
+	 * @param icon
+	 *            the icon
+	 */
+	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int view, final DialogDTO<?> dto, final int icon, LoadDialog loadDialog) {
+		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, icon, loadDialog);
+		this.show();
+	}
+
+	/**
+	 * Instantiates a new dialog builder.
+	 * 
+	 * @param title
+	 *            the title
+	 * @param buttonLeft
+	 *            the button left
+	 * @param buttonRight
+	 *            the button right
+	 * @param view
+	 *            the view
+	 * @param dto
+	 *            the dto
+	 */
+	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int view, final DialogDTO<?> dto, LoadDialog loadDialog) {
+		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, 0, loadDialog);
 		this.show();
 	}
 
@@ -201,7 +294,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the button left click
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int view, final DialogDTO<?> dto, final OnClickListener buttonLeftClick) {
-		this.build(title, buttonLeft, buttonRight, 0, null, buttonLeftClick, view, dto, 0);
+		this.build(title, buttonLeft, buttonRight, 0, null, buttonLeftClick, view, dto, 0, null);
 		this.show();
 	}
 
@@ -224,7 +317,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the icon
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int view, final DialogDTO<?> dto, final OnClickListener buttonLeftClick, final int icon) {
-		this.build(title, buttonLeft, buttonRight, 0, null, buttonLeftClick, view, dto, icon);
+		this.build(title, buttonLeft, buttonRight, 0, null, buttonLeftClick, view, dto, icon, null);
 		this.show();
 	}
 
@@ -243,7 +336,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the button right click
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int message, final OnClickListener buttonRightClick) {
-		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, null, 0, null, 0);
+		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, null, 0, null, 0, null);
 		this.show();
 	}
 
@@ -264,7 +357,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the icon
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int message, final OnClickListener buttonRightClick, final int icon) {
-		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, null, 0, null, icon);
+		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, null, 0, null, icon, null);
 		this.show();
 	}
 
@@ -285,7 +378,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the button left click
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int message, final OnClickListener buttonRightClick, final OnClickListener buttonLeftClick) {
-		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, buttonLeftClick, 0, null, 0);
+		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, buttonLeftClick, 0, null, 0, null);
 		this.show();
 	}
 
@@ -308,7 +401,7 @@ public class DialogBuilder implements OnClickListener {
 	 *            the icon
 	 */
 	public DialogBuilder(final int title, final int buttonLeft, final int buttonRight, final int message, final OnClickListener buttonRightClick, final OnClickListener buttonLeftClick, final int icon) {
-		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, buttonLeftClick, 0, null, icon);
+		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, buttonLeftClick, 0, null, icon, null);
 		this.show();
 	}
 
@@ -334,7 +427,7 @@ public class DialogBuilder implements OnClickListener {
 	 * @param icon
 	 *            the icon
 	 */
-	private void build(final int title, final int buttonLeft, final int buttonRight, final int message, final OnClickListener buttonRightClick, final OnClickListener buttonLeftClick, final int view, final DialogDTO<?> dto, final int icon) {
+	private void build(final int title, final int buttonLeft, final int buttonRight, final int message, final OnClickListener buttonRightClick, final OnClickListener buttonLeftClick, final int view, final DialogDTO<?> dto, final int icon, LoadDialog loadDialog) {
 		this.title = title;
 		this.buttonLeft = buttonLeft;
 		this.buttonRight = buttonRight;
@@ -344,6 +437,7 @@ public class DialogBuilder implements OnClickListener {
 		this.view = view;
 		this.dto = dto;
 		this.icon = icon;
+		this.loadDialog = loadDialog;
 	}
 
 	/*
@@ -362,7 +456,13 @@ public class DialogBuilder implements OnClickListener {
 		final DialogDTO<Object> dialogDTO = new DialogDTO<Object>();
 		dialogDTO.setCodigo(this.dto.getCodigo());
 		dialogDTO.setObject(object);
-		((LoadDialog) CommonsActivity.getActivity()).getterObjectDialog(dialogDTO);
+		if (this.loadDialog == null) {
+			if (CommonsActivity.getActivity() instanceof LoadDialog) {
+				((LoadDialog) CommonsActivity.getActivity()).getterObjectDialog(dialogDTO);
+			}
+		} else {
+			this.loadDialog.getterObjectDialog(dialogDTO);
+		}
 		dialog.cancel();
 	}
 

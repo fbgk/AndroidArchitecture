@@ -8,7 +8,11 @@ public class DateToString implements ConversionType<String, Date> {
 
 	@Override
 	public String conversion(final Date object) {
-		return object.toString();
+		String string = "";
+		if (object != null) {
+			string = object.toString();
+		}
+		return string;
 	}
 
 }

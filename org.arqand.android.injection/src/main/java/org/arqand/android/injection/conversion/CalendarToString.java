@@ -8,7 +8,11 @@ public class CalendarToString implements ConversionType<String, Calendar> {
 
 	@Override
 	public String conversion(final Calendar object) {
-		return object.toString();
+		String string = "";
+		if (object != null) {
+			string = object.toString();
+		}
+		return string;
 	}
 
 }
