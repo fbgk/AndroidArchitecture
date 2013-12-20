@@ -3,19 +3,20 @@ package org.arqand.android.injection;
 import java.util.ArrayList;
 
 import org.arqand.android.commons.reflections.CommonsReflections;
+import org.arqand.android.field.cache.api.CacheDTOService;
+import org.arqand.android.field.cache.api.dto.CacheDTO;
+import org.arqand.android.field.cache.api.dto.FieldCacheDTO;
+import org.arqand.android.field.cache.impl.CacheDTOServiceImpl;
 import org.arqand.android.injection.api.ConversionType;
 import org.arqand.android.injection.api.InitCacheService;
 import org.arqand.android.injection.api.ViewInjectionService;
-import org.arqand.android.injection.api.dto.FieldCacheDTO;
+import org.arqand.android.injection.api.annotation.Visual;
 import org.arqand.android.injection.api.dto.InformationCacheDTO;
-import org.arqand.android.injection.api.dto.InjectionCacheDTO;
 import org.arqand.android.injection.api.dto.InjectionFinalCacheDTO;
 import org.arqand.android.injection.api.dto.ViewCacheDTO;
 import org.arqand.android.injection.cache.CacheConversionServiceImpl;
-import org.arqand.android.injection.cache.CacheInjectionDTOServiceImpl;
 import org.arqand.android.injection.cache.CacheInjectionViewServiceImpl;
 import org.arqand.android.injection.cache.api.CacheConversionService;
-import org.arqand.android.injection.cache.api.CacheInjectionDTOService;
 import org.arqand.android.injection.cache.api.CacheInjectionViewService;
 
 import android.view.View;
@@ -32,7 +33,7 @@ public class InitCacheServiceImpl implements InitCacheService {
 	private final CacheConversionService	cacheConversionService		= new CacheConversionServiceImpl();
 
 	/** The cache injection dto service. */
-	private final CacheInjectionDTOService	cacheInjectionDTOService	= new CacheInjectionDTOServiceImpl();
+	private final CacheDTOService			cacheDTOService				= CacheDTOServiceImpl.getInstance();
 
 	/** The cache injection view service. */
 	private final CacheInjectionViewService	cacheInjectionViewService	= new CacheInjectionViewServiceImpl();
@@ -96,9 +97,7 @@ public class InitCacheServiceImpl implements InitCacheService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.api.InitCacheService#createInjectionFinalCache
-	 * (java.lang.Class, int)
+	 * @see org.arqand.android.injection.api.InitCacheService#createInjectionFinalCache (java.lang.Class, int)
 	 */
 	@Override
 	public InjectionFinalCacheDTO createInjectionFinalCache(final Class<?> clazz, final View view) {
@@ -107,20 +106,25 @@ public class InitCacheServiceImpl implements InitCacheService {
 		injectionFinalCacheDTO.setId(view.getId());
 		injectionFinalCacheDTO.setListInformation(new ArrayList<InformationCacheDTO>());
 
-		final InjectionCacheDTO injectionCacheDTO = this.cacheInjectionDTOService.getValue(clazz);
+		final CacheDTO cacheDTO = this.cacheDTOService.getValue(clazz);
 
 		// Look for each data field for transformations as charged
-		for (final FieldCacheDTO fieldCacheDTO : injectionCacheDTO.getListFieldCacheDTOs()) {
+		for (final FieldCacheDTO fieldCacheDTO : cacheDTO.getMapCacheDTO().values()) {
 
-			for (final int iden : fieldCacheDTO.getVisual().value()) {
-				final InformationCacheDTO informationCacheDTO = this.createInformation(iden, fieldCacheDTO, view);
+			Visual visual = CommonsReflections.returnAnnotation(Visual.class, fieldCacheDTO.getField());
 
-				if (informationCacheDTO != null) {
+			if (visual != null) {
 
-					injectionFinalCacheDTO.getListInformation().add(informationCacheDTO);
+				for (final int iden : visual.value()) {
 
+					final InformationCacheDTO informationCacheDTO = this.createInformation(iden, fieldCacheDTO, view);
+
+					if (informationCacheDTO != null) {
+
+						injectionFinalCacheDTO.getListInformation().add(informationCacheDTO);
+
+					}
 				}
-
 			}
 		}
 		return injectionFinalCacheDTO;
@@ -129,9 +133,7 @@ public class InitCacheServiceImpl implements InitCacheService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.api.InitCacheService#factoryConverType(org
-	 * .arqand.android.injection.api.ConversionType[])
+	 * @see org.arqand.android.injection.api.InitCacheService#factoryConverType(org .arqand.android.injection.api.ConversionType[])
 	 */
 	@Override
 	public void factoryConverType(final ConversionType<?, ?>... conversionTypes) {
@@ -143,9 +145,7 @@ public class InitCacheServiceImpl implements InitCacheService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.api.InitCacheService#factoryViewCache(org
-	 * .arqand.android.injection.api.ViewInjectionService[])
+	 * @see org.arqand.android.injection.api.InitCacheService#factoryViewCache(org .arqand.android.injection.api.ViewInjectionService[])
 	 */
 	@Override
 	public void factoryViewCache(final ViewInjectionService<?, ?>... viewInjectionServices) {

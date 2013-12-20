@@ -1,5 +1,6 @@
 package org.arqand.android.injection.api.dto;
 
+import org.arqand.android.field.cache.api.dto.FieldCacheDTO;
 import org.arqand.android.injection.api.ConversionType;
 import org.arqand.android.injection.api.ViewInjectionService;
 
@@ -9,19 +10,19 @@ import org.arqand.android.injection.api.ViewInjectionService;
 public class InformationCacheDTO {
 
 	/** The conversion type dto to view. */
-	private ConversionType<?, ?> conversionTypeDTOToView;
+	private ConversionType<?, ?>		conversionTypeDTOToView;
 
 	/** The conversion type view to dto. */
-	private ConversionType<?, ?> conversionTypeViewToDTO;
+	private ConversionType<?, ?>		conversionTypeViewToDTO;
 
 	/** The field cache dto. */
-	private FieldCacheDTO fieldCacheDTO;
+	private FieldCacheDTO				fieldCacheDTO;
 
 	/** The view id. */
-	private int viewId;
+	private int							viewId;
 
 	/** The view injection service. */
-	private ViewInjectionService<?, ?> viewInjectionService;
+	private ViewInjectionService<?, ?>	viewInjectionService;
 
 	/*
 	 * (non-Javadoc)
@@ -128,11 +129,11 @@ public class InformationCacheDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((this.conversionTypeDTOToView == null) ? 0 : this.conversionTypeDTOToView.hashCode());
-		result = (prime * result) + ((this.conversionTypeViewToDTO == null) ? 0 : this.conversionTypeViewToDTO.hashCode());
-		result = (prime * result) + ((this.fieldCacheDTO == null) ? 0 : this.fieldCacheDTO.hashCode());
-		result = (prime * result) + this.viewId;
-		result = (prime * result) + ((this.viewInjectionService == null) ? 0 : this.viewInjectionService.hashCode());
+		result = prime * result + (this.conversionTypeDTOToView == null ? 0 : this.conversionTypeDTOToView.hashCode());
+		result = prime * result + (this.conversionTypeViewToDTO == null ? 0 : this.conversionTypeViewToDTO.hashCode());
+		result = prime * result + (this.fieldCacheDTO == null ? 0 : this.fieldCacheDTO.hashCode());
+		result = prime * result + this.viewId;
+		result = prime * result + (this.viewInjectionService == null ? 0 : this.viewInjectionService.hashCode());
 		return result;
 	}
 

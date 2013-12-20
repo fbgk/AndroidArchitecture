@@ -7,9 +7,7 @@ import org.arqand.android.commons.cache.CommonsCache;
 import org.arqand.android.commons.reflections.CommonsReflections;
 import org.arqand.android.injection.api.ConversionType;
 import org.arqand.android.injection.api.dto.ConversionCacheDTO;
-import org.arqand.android.injection.api.dto.InjectionCacheDTO;
 import org.arqand.android.injection.cache.api.CacheConversionService;
-import org.arqand.android.injection.conversion.BigDecimalToString;
 
 /**
  * Class dedicated to creating the type converters
@@ -17,21 +15,14 @@ import org.arqand.android.injection.conversion.BigDecimalToString;
 public class CacheConversionServiceImpl implements CacheConversionService {
 
 	/** The cache name. */
-	private static final String CACHE_NAME = CacheConversionServiceImpl.class.getCanonicalName();
+	private static final String	CACHE_NAME			= CacheConversionServiceImpl.class.getCanonicalName();
 
 	static {
-		CommonsCache.addCache(CACHE_NAME, new HashMap<String, InjectionCacheDTO>());
-	}
-
-	public static void main(final String[] args) {
-		final ConversionType<?, ?> conversionType = new BigDecimalToString();
-		final CacheConversionServiceImpl cacheConversionServiceImpl = new CacheConversionServiceImpl();
-		cacheConversionServiceImpl.conversionCacheDTO(conversionType);
-
+		CommonsCache.addCache(CACHE_NAME, new HashMap<ConversionCacheDTO, ConversionType<?, ?>>());
 	}
 
 	/** The method injection. */
-	private final String METHOD_INJECTION = "conversion";
+	private final String		METHOD_INJECTION	= "conversion";
 
 	/**
 	 * Instantiates a new cache conversion service impl.
@@ -70,7 +61,7 @@ public class CacheConversionServiceImpl implements CacheConversionService {
 		final Class<?>[] clazz = CommonsReflections.upClassesMethod(conversionType, this.METHOD_INJECTION);
 		final Class<?> clazzReturn = CommonsReflections.returnMethodClass(conversionType, this.METHOD_INJECTION);
 		ConversionCacheDTO conversionCacheDTO = null;
-		if ((clazz != null) && (clazz.length == 1) && (clazzReturn != null)) {
+		if (clazz != null && clazz.length == 1 && clazzReturn != null) {
 			conversionCacheDTO = new ConversionCacheDTO(clazz[0], clazzReturn);
 		}
 		return conversionCacheDTO;
@@ -79,9 +70,7 @@ public class CacheConversionServiceImpl implements CacheConversionService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.cache.api.CacheConversionService#getConversion
-	 * (java.lang.Class, java.lang.Class)
+	 * @see org.arqand.android.injection.cache.api.CacheConversionService#getConversion (java.lang.Class, java.lang.Class)
 	 */
 	/**
 	 * Gets the conversion.
@@ -105,9 +94,7 @@ public class CacheConversionServiceImpl implements CacheConversionService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.arqand.android.injection.cache.api.CacheConversionService#setConversion
-	 * (org.arqand.android.injection.api.ConversionType)
+	 * @see org.arqand.android.injection.cache.api.CacheConversionService#setConversion (org.arqand.android.injection.api.ConversionType)
 	 */
 	/**
 	 * Sets the conversion.

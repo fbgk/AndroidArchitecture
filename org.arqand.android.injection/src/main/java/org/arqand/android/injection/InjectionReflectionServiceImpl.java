@@ -2,11 +2,12 @@ package org.arqand.android.injection;
 
 import org.arqand.android.commons.activity.CommonsActivity;
 import org.arqand.android.commons.reflections.CommonsReflections;
+import org.arqand.android.field.cache.api.dto.FieldCacheDTO;
 import org.arqand.android.injection.api.ConversionType;
 import org.arqand.android.injection.api.InitCacheService;
 import org.arqand.android.injection.api.InjectionReflectionService;
 import org.arqand.android.injection.api.ViewInjectionService;
-import org.arqand.android.injection.api.dto.FieldCacheDTO;
+import org.arqand.android.injection.api.annotation.Visual;
 import org.arqand.android.injection.api.dto.InformationCacheDTO;
 import org.arqand.android.injection.api.dto.InjectionFinalCacheDTO;
 import org.arqand.android.injection.cache.CacheFinalServiceImpl;
@@ -217,7 +218,10 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 			for (final InformationCacheDTO informationCacheDTO : injectionFinalCacheDTO.getListInformation()) {
 
 				FieldCacheDTO fieldCacheDTO = informationCacheDTO.getFieldCacheDTO();
-				if (!fieldCacheDTO.getVisual().isPassword()) {
+
+				Visual visual = CommonsReflections.returnAnnotation(Visual.class, fieldCacheDTO.getField());
+
+				if (visual != null && !visual.isPassword()) {
 
 					Object data = CommonsReflections.returnValue(object, fieldCacheDTO.getMethodGet());
 					if (informationCacheDTO.getConversionTypeDTOToView() != null) {

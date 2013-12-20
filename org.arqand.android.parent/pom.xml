@@ -60,9 +60,11 @@
 
 	<modules>
 		<module>../org.arqand.android.core</module>
+		<module>../org.arqand.android.cache.field</module>
 		<module>../org.arqand.android.injection</module>
 		<module>../org.arqand.android.injection.modal</module>
 		<module>../org.arqand.android.animation</module>
+		<module>../org.arqand.android.orm</module>
 	</modules>
 
 	<build>

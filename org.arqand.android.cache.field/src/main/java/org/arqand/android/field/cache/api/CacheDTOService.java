@@ -1,11 +1,11 @@
-package org.arqand.android.injection.cache.api;
+package org.arqand.android.field.cache.api;
 
-import org.arqand.android.injection.api.dto.InjectionCacheDTO;
+import org.arqand.android.field.cache.api.dto.CacheDTO;
 
 /**
  * Interface that caches all part of the DTO cache application
  */
-public interface CacheInjectionDTOService {
+public interface CacheDTOService {
 
 	/**
 	 * Gets the value.
@@ -14,7 +14,7 @@ public interface CacheInjectionDTOService {
 	 *            the clase
 	 * @return the value
 	 */
-	InjectionCacheDTO getValue(Class<?> clase);
+	CacheDTO getValue(Class<?> clase);
 
 	/**
 	 * Sets the cache.
@@ -22,6 +22,6 @@ public interface CacheInjectionDTOService {
 	 * @param injectionCacheDTO
 	 *            the new cache
 	 */
-	void setCache(InjectionCacheDTO injectionCacheDTO);
+	void setCache(CacheDTO injectionCacheDTO);
 
 }
