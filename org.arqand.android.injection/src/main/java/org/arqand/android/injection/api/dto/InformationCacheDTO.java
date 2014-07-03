@@ -1,32 +1,31 @@
 package org.arqand.android.injection.api.dto;
 
+import org.arqand.android.conversion.api.ConversionType;
 import org.arqand.android.field.cache.api.dto.FieldCacheDTO;
-import org.arqand.android.injection.api.ConversionType;
 import org.arqand.android.injection.api.ViewInjectionService;
 
 /**
  * The Class InformationCacheDTO.
  */
 public class InformationCacheDTO {
-
+	
 	/** The conversion type dto to view. */
 	private ConversionType<?, ?>		conversionTypeDTOToView;
-
+	
 	/** The conversion type view to dto. */
 	private ConversionType<?, ?>		conversionTypeViewToDTO;
-
+	
 	/** The field cache dto. */
 	private FieldCacheDTO				fieldCacheDTO;
-
+	
 	/** The view id. */
 	private int							viewId;
-
+	
 	/** The view injection service. */
 	private ViewInjectionService<?, ?>	viewInjectionService;
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -74,7 +73,7 @@ public class InformationCacheDTO {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Gets the conversion type dto to view.
 	 * 
@@ -83,7 +82,7 @@ public class InformationCacheDTO {
 	public ConversionType<?, ?> getConversionTypeDTOToView() {
 		return this.conversionTypeDTOToView;
 	}
-
+	
 	/**
 	 * Gets the conversion type view to dto.
 	 * 
@@ -92,7 +91,7 @@ public class InformationCacheDTO {
 	public ConversionType<?, ?> getConversionTypeViewToDTO() {
 		return this.conversionTypeViewToDTO;
 	}
-
+	
 	/**
 	 * Gets the field cache dto.
 	 * 
@@ -101,7 +100,7 @@ public class InformationCacheDTO {
 	public FieldCacheDTO getFieldCacheDTO() {
 		return this.fieldCacheDTO;
 	}
-
+	
 	/**
 	 * Gets the view id.
 	 * 
@@ -110,7 +109,7 @@ public class InformationCacheDTO {
 	public int getViewId() {
 		return this.viewId;
 	}
-
+	
 	/**
 	 * Gets the view injection service.
 	 * 
@@ -119,10 +118,9 @@ public class InformationCacheDTO {
 	public ViewInjectionService<?, ?> getViewInjectionService() {
 		return this.viewInjectionService;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -136,7 +134,7 @@ public class InformationCacheDTO {
 		result = prime * result + (this.viewInjectionService == null ? 0 : this.viewInjectionService.hashCode());
 		return result;
 	}
-
+	
 	/**
 	 * Sets the conversion type dto to view.
 	 * 
@@ -146,7 +144,7 @@ public class InformationCacheDTO {
 	public void setConversionTypeDTOToView(final ConversionType<?, ?> conversionTypeDTOToView) {
 		this.conversionTypeDTOToView = conversionTypeDTOToView;
 	}
-
+	
 	/**
 	 * Sets the conversion type view to dto.
 	 * 
@@ -156,7 +154,7 @@ public class InformationCacheDTO {
 	public void setConversionTypeViewToDTO(final ConversionType<?, ?> conversionTypeViewToDTO) {
 		this.conversionTypeViewToDTO = conversionTypeViewToDTO;
 	}
-
+	
 	/**
 	 * Sets the field cache dto.
 	 * 
@@ -166,7 +164,7 @@ public class InformationCacheDTO {
 	public void setFieldCacheDTO(final FieldCacheDTO fieldCacheDTO) {
 		this.fieldCacheDTO = fieldCacheDTO;
 	}
-
+	
 	/**
 	 * Sets the view id.
 	 * 
@@ -176,7 +174,7 @@ public class InformationCacheDTO {
 	public void setViewId(final int viewId) {
 		this.viewId = viewId;
 	}
-
+	
 	/**
 	 * Sets the view injection service.
 	 * 
@@ -186,5 +184,5 @@ public class InformationCacheDTO {
 	public void setViewInjectionService(final ViewInjectionService<?, ?> viewInjectionService) {
 		this.viewInjectionService = viewInjectionService;
 	}
-
+	
 }

@@ -14,6 +14,8 @@
 	<properties>
 		<!-- Version core  -->
 		<version.arqand.core>0.0.1.RELEASE</version.arqand.core>
+		<!-- Version conversion -->
+		<version.arqand.conversion>0.0.1.RELEASE</version.arqand.conversion>
 	</properties>
 	
 	<build>
@@ -40,6 +42,11 @@
 			<groupId>org.arqand.android</groupId>
 			<artifactId>org.arqand.android.field.cache</artifactId>
 			<version>${version.arqand.core}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.arqand.android</groupId>
+			<artifactId>org.arqand.android.conversion</artifactId>
+			<version>${version.arqand.conversion}</version>
 		</dependency>
 	</dependencies>
 </project>

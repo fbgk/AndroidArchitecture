@@ -18,13 +18,13 @@ import android.content.Context;
  * Commons Class for Reflections Java.
  */
 public class CommonsReflections {
-
+	
 	/** The Constant GETTER_CONSTANT. */
 	private static final String	GETTER_CONSTANT	= "get";
-
+	
 	/** The Constant SETTER_CONSTANT. */
 	private static final String	SETTER_CONSTANT	= "set";
-
+	
 	/**
 	 * New instance's class.
 	 * 
@@ -35,11 +35,11 @@ public class CommonsReflections {
 	 * @return a instance for class or null
 	 */
 	public static <T> T createInstance(final Class<T> clazz) {
-
+		
 		T object = null;
 		try {
 			object = clazz.newInstance();
-
+			
 		} catch (final InstantiationException e) {
 			e.printStackTrace();
 		} catch (final IllegalAccessException e) {
@@ -62,10 +62,10 @@ public class CommonsReflections {
 				e.printStackTrace();
 			}
 		}
-
+		
 		return object;
 	}
-
+	
 	/**
 	 * Returns the method according to the field.
 	 * 
@@ -76,10 +76,10 @@ public class CommonsReflections {
 	 * @return the method to retrieve the object
 	 */
 	public static Method getterMethod(final String field, final Object object) {
-
+		
 		return methodGetter(GETTER_CONSTANT, field, object);
 	}
-
+	
 	/**
 	 * Invokes the setter method of the actual field.
 	 * 
@@ -91,7 +91,7 @@ public class CommonsReflections {
 	 *            Value of the object.
 	 */
 	public static void invokeSetter(final Field field, final Object source, final Object objeto) {
-
+		
 		try {
 			final Method metodo = methodGetter(SETTER_CONSTANT, field.getName(), source);
 			if (metodo != null) {
@@ -103,7 +103,7 @@ public class CommonsReflections {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Invokes the setter method of the actual field.
 	 * 
@@ -114,17 +114,17 @@ public class CommonsReflections {
 	 * @param objeto
 	 *            Value of the object.
 	 */
-	public static void invokeSetter(final Method metodo, final Object object, final Object objeto) {
-
+	public static void invokeSetter(final Method metodo, final Object object, final Object args) {
+		
 		try {
-			metodo.invoke(object, objeto);
+			metodo.invoke(object, args);
 		} catch (final IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Method getter. We recover the data needed. In this case the method.
 	 * 
@@ -147,16 +147,16 @@ public class CommonsReflections {
 		}
 		try {
 			if (GETTER_CONSTANT.equals(type)) {
-
+				
 				method = clazz.getMethod(stringMetodo);
-
+				
 			} else {
-
+				
 				final Iterator<Method> iterator = Arrays.asList(clazz.getDeclaredMethods()).iterator();
 				while (iterator.hasNext() && method == null) {
-
+					
 					final Method comparator = iterator.next();
-
+					
 					if (comparator.getName().equals(stringMetodo)) {
 						method = comparator;
 					}
@@ -167,7 +167,7 @@ public class CommonsReflections {
 		}
 		return method;
 	}
-
+	
 	/**
 	 * The annotation will return or not according to this last field.
 	 * 
@@ -181,7 +181,7 @@ public class CommonsReflections {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Annotation> T returnAnnotation(final Class<? extends Annotation> anotacion, final Field field) {
-
+		
 		T respuesta = null;
 		if (anotacion != null && field != null) {
 			if (field.isAnnotationPresent(anotacion)) {
@@ -190,7 +190,7 @@ public class CommonsReflections {
 		}
 		return respuesta;
 	}
-
+	
 	/**
 	 * The annotation will return or not according to this last class.
 	 * 
@@ -204,7 +204,7 @@ public class CommonsReflections {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Annotation> T returnAnnotation(final Class<?> clazz, final Class<? extends Annotation> annotation) {
-
+		
 		T respuesta = null;
 		if (annotation != null && clazz != null) {
 			if (clazz.isAnnotationPresent(annotation)) {
@@ -213,7 +213,7 @@ public class CommonsReflections {
 		}
 		return respuesta;
 	}
-
+	
 	/**
 	 * From the name of the class returns the class.
 	 * 
@@ -230,7 +230,7 @@ public class CommonsReflections {
 		}
 		return clazz;
 	}
-
+	
 	/**
 	 * Returns the field as the field name.
 	 * 
@@ -245,13 +245,13 @@ public class CommonsReflections {
 		try {
 			field = clazz.getDeclaredField(name);
 		} catch (final SecurityException e) {
-
+			
 		} catch (final NoSuchFieldException e) {
-
+			
 		}
 		return field;
 	}
-
+	
 	/**
 	 * Return fields.
 	 * 
@@ -262,7 +262,7 @@ public class CommonsReflections {
 	public static List<Field> returnFields(final Class<?> clazz) {
 		return Arrays.asList(clazz.getDeclaredFields());
 	}
-
+	
 	/**
 	 * Returns the method according to the field.
 	 * 
@@ -275,7 +275,7 @@ public class CommonsReflections {
 	public static Method returnMethod(final Field field, final Object object) {
 		return getterMethod(field.getName(), object);
 	}
-
+	
 	/**
 	 * Return method class.
 	 * 
@@ -297,7 +297,7 @@ public class CommonsReflections {
 		}
 		return clazzs;
 	}
-
+	
 	/**
 	 * Retrieves the value of an object according to the field.
 	 * 
@@ -308,7 +308,7 @@ public class CommonsReflections {
 	 * @return the field object or null
 	 */
 	public static Object returnValue(final Object objeto, final Field field) {
-
+		
 		Object object = null;
 		final Method metodo = returnMethod(field, objeto);
 		if (metodo != null) {
@@ -316,7 +316,7 @@ public class CommonsReflections {
 		}
 		return object;
 	}
-
+	
 	/**
 	 * Retrieves the value of an object according to the field.
 	 * 
@@ -327,7 +327,7 @@ public class CommonsReflections {
 	 * @return the field object or null
 	 */
 	public static Object returnValue(final Object baseDTO, final Method method) {
-
+		
 		Object objeto = null;
 		try {
 			objeto = method.invoke(baseDTO);
@@ -338,7 +338,7 @@ public class CommonsReflections {
 		}
 		return objeto;
 	}
-
+	
 	/**
 	 * Value method. Based on a method name, the method retrieves the data
 	 * 
@@ -365,7 +365,7 @@ public class CommonsReflections {
 		}
 		return value;
 	}
-
+	
 	/**
 	 * Returns the method according to the field.
 	 * 
@@ -376,10 +376,10 @@ public class CommonsReflections {
 	 * @return the method to retrieve the object
 	 */
 	public static Method setterMethod(final Field field, final Object object) {
-
+		
 		return methodGetter(SETTER_CONSTANT, field.getName(), object);
 	}
-
+	
 	/**
 	 * Returns the method according to the field.
 	 * 
@@ -390,13 +390,12 @@ public class CommonsReflections {
 	 * @return the method to retrieve the object
 	 */
 	public static Method setterMethod(final String field, final Object object) {
-
+		
 		return methodGetter(SETTER_CONSTANT, field, object);
 	}
-
+	
 	/**
-	 * Value method. Based on a method name, the object inserted into the data
-	 * set
+	 * Value method. Based on a method name, the object inserted into the data set
 	 * 
 	 * @param <T>
 	 *            the generic type
@@ -424,10 +423,32 @@ public class CommonsReflections {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
-	 * Up classes method.From the name of the method and the object is retrieved
-	 * from the call classes
+	 * Value method. Based on a method name, the object inserted into the data set
+	 * 
+	 * @param <T>
+	 *            the generic type
+	 * @param object
+	 *            the object
+	 * @param methodName
+	 *            the method name
+	 * @param value
+	 *            the value
+	 * @return the t
+	 */
+	public static <T> void setterValueMethod(final Object object, final Method methodName, final T value) {
+		try {
+			if (methodName != null) {
+				invokeSetter(methodName, object, value);
+			}
+		} catch (final SecurityException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Up classes method.From the name of the method and the object is retrieved from the call classes
 	 * 
 	 * @param object
 	 *            the object
@@ -447,5 +468,5 @@ public class CommonsReflections {
 		}
 		return clazzs;
 	}
-
+	
 }

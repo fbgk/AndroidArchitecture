@@ -4,20 +4,20 @@ package org.arqand.android.injection.api.dto;
  * The Class MapeoFinalCacheDTO.
  */
 public class MapFinalCacheDTO {
-
+	
 	/** The class dto. */
-	private Class<?> classDTO;
-
+	private Class<?>	classDTO;
+	
 	/** The id. */
-	private Integer id;
-
+	private Integer		id;
+	
 	/**
 	 * Instantiates a new map final cache dto.
 	 */
 	public MapFinalCacheDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	/**
 	 * Instantiates a new map final cache dto.
 	 * 
@@ -31,10 +31,9 @@ public class MapFinalCacheDTO {
 		this.classDTO = classDTO;
 		this.id = id;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -65,7 +64,7 @@ public class MapFinalCacheDTO {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Gets the class dto.
 	 * 
@@ -74,7 +73,7 @@ public class MapFinalCacheDTO {
 	public Class<?> getClassDTO() {
 		return this.classDTO;
 	}
-
+	
 	/**
 	 * Gets the id.
 	 * 
@@ -83,10 +82,9 @@ public class MapFinalCacheDTO {
 	public Integer getId() {
 		return this.id;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -97,7 +95,7 @@ public class MapFinalCacheDTO {
 		result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
 		return result;
 	}
-
+	
 	/**
 	 * Sets the class dto.
 	 * 
@@ -107,7 +105,7 @@ public class MapFinalCacheDTO {
 	public void setClassDTO(final Class<?> classDTO) {
 		this.classDTO = classDTO;
 	}
-
+	
 	/**
 	 * Sets the id.
 	 * 
@@ -117,5 +115,5 @@ public class MapFinalCacheDTO {
 	public void setId(final Integer id) {
 		this.id = id;
 	}
-
+	
 }

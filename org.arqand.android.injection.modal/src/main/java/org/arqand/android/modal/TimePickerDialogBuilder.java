@@ -14,17 +14,17 @@ import android.widget.TimePicker;
  * The Class TimePickerDialogBuilder.
  */
 public class TimePickerDialogBuilder implements OnTimeSetListener {
-
+	
 	/** The codigo. */
 	private int	codigo;
-
+	
 	/**
 	 * Instantiates a new time picker dialog builder.
 	 */
 	public TimePickerDialogBuilder() {
 		this.crearTimeDialog(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true, 0);
 	};
-
+	
 	/**
 	 * Instantiates a new time picker dialog builder.
 	 * 
@@ -34,7 +34,7 @@ public class TimePickerDialogBuilder implements OnTimeSetListener {
 	public TimePickerDialogBuilder(final int codigo) {
 		this.crearTimeDialog(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true, codigo);
 	};
-
+	
 	/**
 	 * Instantiates a new time picker dialog builder.
 	 * 
@@ -48,7 +48,7 @@ public class TimePickerDialogBuilder implements OnTimeSetListener {
 	public TimePickerDialogBuilder(final int hourOfDay, final int minute, final boolean is24HourView) {
 		this.crearTimeDialog(hourOfDay, minute, is24HourView, 0);
 	}
-
+	
 	/**
 	 * Instantiates a new time picker dialog builder.
 	 * 
@@ -64,7 +64,7 @@ public class TimePickerDialogBuilder implements OnTimeSetListener {
 	public TimePickerDialogBuilder(final int hourOfDay, final int minute, final boolean is24HourView, final int codigo) {
 		this.crearTimeDialog(hourOfDay, minute, is24HourView, codigo);
 	}
-
+	
 	/**
 	 * Crear time dialog.
 	 * 
@@ -81,13 +81,10 @@ public class TimePickerDialogBuilder implements OnTimeSetListener {
 		new TimePickerDialog(CommonsActivity.getActivity(), this, hourOfDay, minute, is24HourView).show();
 		this.codigo = codigo;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * android.app.TimePickerDialog.OnTimeSetListener#onTimeSet(android.widget
-	 * .TimePicker, int, int)
+	 * @see android.app.TimePickerDialog.OnTimeSetListener#onTimeSet(android.widget .TimePicker, int, int)
 	 */
 	@Override
 	public void onTimeSet(final TimePicker view, final int hourOfDay, final int minute) {
@@ -98,5 +95,5 @@ public class TimePickerDialogBuilder implements OnTimeSetListener {
 		dialogDTO.setCodigo(this.codigo);
 		((LoadDialog) CommonsActivity.getActivity()).getterObjectDialog(dialogDTO);
 	}
-
+	
 }

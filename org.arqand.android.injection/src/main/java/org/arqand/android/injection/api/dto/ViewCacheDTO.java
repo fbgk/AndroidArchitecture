@@ -4,16 +4,16 @@ package org.arqand.android.injection.api.dto;
  * The Class ViewCacheDTO.
  */
 public class ViewCacheDTO {
-
+	
 	/** The clazz return. */
-	private Class<?> clazzReturn;
-
+	private Class<?>	clazzReturn;
+	
 	/** The clazz view. */
-	private Class<?> clazzView;
-
+	private Class<?>	clazzView;
+	
 	public ViewCacheDTO() {
 	}
-
+	
 	/**
 	 * @param clazzReturn
 	 */
@@ -21,7 +21,7 @@ public class ViewCacheDTO {
 		super();
 		this.clazzView = clazzView;
 	}
-
+	
 	/**
 	 * @param clazzReturn
 	 * @param clazzView
@@ -31,7 +31,7 @@ public class ViewCacheDTO {
 		this.clazzReturn = clazzReturn;
 		this.clazzView = clazzView;
 	}
-
+	
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -60,7 +60,7 @@ public class ViewCacheDTO {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Gets the clazz return.
 	 * 
@@ -69,7 +69,7 @@ public class ViewCacheDTO {
 	public Class<?> getClazzReturn() {
 		return this.clazzReturn;
 	}
-
+	
 	/**
 	 * Gets the clazz view.
 	 * 
@@ -78,7 +78,7 @@ public class ViewCacheDTO {
 	public Class<?> getClazzView() {
 		return this.clazzView;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,7 +87,7 @@ public class ViewCacheDTO {
 		result = (prime * result) + ((this.clazzView == null) ? 0 : this.clazzView.hashCode());
 		return result;
 	}
-
+	
 	/**
 	 * Sets the clazz return.
 	 * 
@@ -97,7 +97,7 @@ public class ViewCacheDTO {
 	public void setClazzReturn(final Class<?> clazzReturn) {
 		this.clazzReturn = clazzReturn;
 	}
-
+	
 	/**
 	 * Sets the clazz view.
 	 * 
@@ -107,5 +107,5 @@ public class ViewCacheDTO {
 	public void setClazzView(final Class<?> clazzView) {
 		this.clazzView = clazzView;
 	}
-
+	
 }

@@ -4,11 +4,10 @@ import org.arqand.android.injection.api.ViewInjectionService;
 import org.arqand.android.injection.api.dto.ViewCacheDTO;
 
 /**
- * Interface dedicated to the creation of cache for the view and its
- * transformation to concrete data.
+ * Interface dedicated to the creation of cache for the view and its transformation to concrete data.
  */
 public interface CacheInjectionViewService {
-
+	
 	/**
 	 * Gets the value. Find the values ​​only by the view class
 	 * 
@@ -21,7 +20,7 @@ public interface CacheInjectionViewService {
 	 * @return the value
 	 */
 	public <T, K> ViewInjectionService<T, K> getValue(Class<?> viewClass);
-
+	
 	/**
 	 * Gets the value. Retrieves the value for the view
 	 * 
@@ -34,7 +33,7 @@ public interface CacheInjectionViewService {
 	 * @return the value
 	 */
 	public <T, K> ViewInjectionService<T, K> getValue(ViewCacheDTO viewCacheDTO);
-
+	
 	/**
 	 * Sets the value. Sets the required values ​​for the injection of the views
 	 * 
@@ -48,5 +47,5 @@ public interface CacheInjectionViewService {
 	 *            the view injection service
 	 */
 	public <T, K> void setValue(ViewInjectionService<T, K> viewInjectionService);
-
+	
 }

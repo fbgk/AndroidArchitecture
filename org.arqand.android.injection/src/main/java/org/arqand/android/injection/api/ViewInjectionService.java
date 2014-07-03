@@ -9,7 +9,7 @@ package org.arqand.android.injection.api;
  *            the key type
  */
 public interface ViewInjectionService<T, K> {
-
+	
 	/**
 	 * Gets the information.
 	 * 
@@ -20,7 +20,7 @@ public interface ViewInjectionService<T, K> {
 	 * @return the information
 	 */
 	public K getInformation(T view);
-
+	
 	/**
 	 * Sets the information.
 	 * 
@@ -30,5 +30,5 @@ public interface ViewInjectionService<T, K> {
 	 *            the new information
 	 */
 	public void setInformation(T view, K information);
-
+	
 }

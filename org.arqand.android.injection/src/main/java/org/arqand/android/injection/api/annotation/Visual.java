@@ -13,26 +13,26 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Visual {
-
+	
 	/**
 	 * Indicates whether a field can be null. The default is set to true.
 	 * 
 	 * @return true, if is null
 	 */
 	boolean isNull() default true;
-
+	
 	/**
 	 * Checks if is password.
 	 * 
 	 * @return true, if is password
 	 */
 	boolean isPassword() default false;
-
+	
 	/**
 	 * IDs for the view.
 	 * 
 	 * @return the int[]
 	 */
 	int[] value();
-
+	
 }

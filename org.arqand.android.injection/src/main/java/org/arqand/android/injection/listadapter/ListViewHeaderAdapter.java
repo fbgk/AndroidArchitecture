@@ -16,10 +16,10 @@ import android.view.ViewGroup;
  * The Class ListViewHeaderAdapter.
  */
 public class ListViewHeaderAdapter extends ListViewAdapter<ListViewHeader> {
-
+	
 	/** The view header. */
 	protected int	viewHeader;
-
+	
 	/**
 	 * Instantiates a new list view header adapter.
 	 * 
@@ -38,10 +38,9 @@ public class ListViewHeaderAdapter extends ListViewAdapter<ListViewHeader> {
 		this.listAdapter.add(noHeader);
 		this.orderList();
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.arqand.android.injection.listadapter.ListViewAdapter#getView(int, android.view.View, android.view.ViewGroup)
 	 */
 	@Override
@@ -50,7 +49,7 @@ public class ListViewHeaderAdapter extends ListViewAdapter<ListViewHeader> {
 			convertView = this.mapView.get(position);
 		} else {
 			ListViewHeader listViewHeader = this.listAdapter.get(position);
-
+			
 			if (TypeList.HEADER.equals(listViewHeader.typeItemList(this.viewId, this.viewHeader))) {
 				convertView = this.layoutInflater.inflate(this.viewHeader, null);
 			} else {
@@ -61,7 +60,7 @@ public class ListViewHeaderAdapter extends ListViewAdapter<ListViewHeader> {
 		}
 		return convertView;
 	}
-
+	
 	/**
 	 * Order list.
 	 * 
@@ -71,26 +70,26 @@ public class ListViewHeaderAdapter extends ListViewAdapter<ListViewHeader> {
 	private void orderList() {
 		Map<Object, List<ListViewHeader>> mapList = new HashMap<Object, List<ListViewHeader>>();
 		Map<Object, ListViewHeader> mapHeader = new HashMap<Object, ListViewHeader>();
-
+		
 		for (ListViewHeader listViewHeader : this.listAdapter) {
-
+			
 			Object group = listViewHeader.groupView(this.viewId, this.viewHeader);
 			TypeList typeList = listViewHeader.typeItemList(this.viewId, this.viewHeader);
-
+			
 			if (TypeList.HEADER.equals(typeList)) {
-
+				
 				mapHeader.put(group, listViewHeader);
-
+				
 			} else if (mapList.containsKey(group)) {
-
+				
 				mapList.get(group).add(listViewHeader);
-
+				
 			} else {
-
+				
 				List<ListViewHeader> listView = new ArrayList<ListViewHeader>();
 				listView.add(listViewHeader);
 				mapList.put(group, listView);
-
+				
 			}
 		}
 		this.listAdapter.clear();
@@ -100,7 +99,7 @@ public class ListViewHeaderAdapter extends ListViewAdapter<ListViewHeader> {
 				this.listAdapter.addAll(mapList.get(object));
 			}
 		}
-
+		
 	}
-
+	
 }

@@ -6,7 +6,7 @@ import org.arqand.android.modal.dto.DialogDTO;
  * The Interface LoadDialog.
  */
 public interface LoadDialog {
-
+	
 	/**
 	 * Gets the ter object dialog.
 	 * 
@@ -15,5 +15,5 @@ public interface LoadDialog {
 	 * @return the ter object dialog
 	 */
 	public void getterObjectDialog(DialogDTO<?> object);
-
+	
 }

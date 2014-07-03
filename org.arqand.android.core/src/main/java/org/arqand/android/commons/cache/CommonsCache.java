@@ -7,10 +7,10 @@ import java.util.Map;
  * The Class CommonsCache.
  */
 public class CommonsCache {
-
+	
 	/** The map. */
-	private static Map<String, Object> map = new HashMap<String, Object>();
-
+	private static Map<String, Object>	map	= new HashMap<String, Object>();
+	
 	/**
 	 * Adds the cache.
 	 * 
@@ -24,7 +24,7 @@ public class CommonsCache {
 			map.put(key, object);
 		}
 	}
-
+	
 	/**
 	 * Gets the cache map.
 	 * 
@@ -35,5 +35,5 @@ public class CommonsCache {
 	public static Object getCacheMap(final String key) {
 		return map.get(key);
 	}
-
+	
 }

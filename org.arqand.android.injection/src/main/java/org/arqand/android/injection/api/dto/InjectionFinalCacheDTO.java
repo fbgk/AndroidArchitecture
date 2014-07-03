@@ -6,16 +6,13 @@ import java.util.List;
  * The Class InjectionFinalCacheDTO.
  */
 public class InjectionFinalCacheDTO extends MapFinalCacheDTO {
-
+	
 	/** The list information. */
-	private List<InformationCacheDTO> listInformation;
-
+	private List<InformationCacheDTO>	listInformation;
+	
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.arqand.android.injection.api.dto.MapeoFinalCacheDTO#equals(java.lang
-	 * .Object)
+	 * @see org.arqand.android.injection.api.dto.MapeoFinalCacheDTO#equals(java.lang .Object)
 	 */
 	@Override
 	public boolean equals(final Object obj) {
@@ -38,7 +35,7 @@ public class InjectionFinalCacheDTO extends MapFinalCacheDTO {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Gets the list information.
 	 * 
@@ -47,10 +44,9 @@ public class InjectionFinalCacheDTO extends MapFinalCacheDTO {
 	public List<InformationCacheDTO> getListInformation() {
 		return this.listInformation;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.arqand.android.injection.api.dto.MapeoFinalCacheDTO#hashCode()
 	 */
 	@Override
@@ -60,7 +56,7 @@ public class InjectionFinalCacheDTO extends MapFinalCacheDTO {
 		result = (prime * result) + ((this.listInformation == null) ? 0 : this.listInformation.hashCode());
 		return result;
 	}
-
+	
 	/**
 	 * Sets the list information.
 	 * 
@@ -70,5 +66,5 @@ public class InjectionFinalCacheDTO extends MapFinalCacheDTO {
 	public void setListInformation(final List<InformationCacheDTO> listInformation) {
 		this.listInformation = listInformation;
 	}
-
+	
 }

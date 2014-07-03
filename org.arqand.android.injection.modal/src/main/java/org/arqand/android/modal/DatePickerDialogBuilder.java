@@ -16,14 +16,14 @@ import android.widget.DatePicker;
 public class DatePickerDialogBuilder implements OnDateSetListener {
 	/** The codigo. */
 	private int	codigo;
-
+	
 	/**
 	 * Instantiates a new date picker dialog builder.
 	 */
 	public DatePickerDialogBuilder() {
 		this.crearDatePicker(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 0);
 	}
-
+	
 	/**
 	 * Instantiates a new date picker dialog builder.
 	 * 
@@ -33,7 +33,7 @@ public class DatePickerDialogBuilder implements OnDateSetListener {
 	public DatePickerDialogBuilder(final int codigo) {
 		this.crearDatePicker(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), codigo);
 	}
-
+	
 	/**
 	 * Instantiates a new date picker dialog builder.
 	 * 
@@ -47,7 +47,7 @@ public class DatePickerDialogBuilder implements OnDateSetListener {
 	public DatePickerDialogBuilder(final int year, final int monthOfYear, final int dayOfMonth) {
 		this.crearDatePicker(year, monthOfYear, dayOfMonth, 0);
 	}
-
+	
 	/**
 	 * Instantiates a new date picker dialog builder.
 	 * 
@@ -63,7 +63,7 @@ public class DatePickerDialogBuilder implements OnDateSetListener {
 	public DatePickerDialogBuilder(final int year, final int monthOfYear, final int dayOfMonth, final int codigo) {
 		this.crearDatePicker(year, monthOfYear, dayOfMonth, codigo);
 	}
-
+	
 	/**
 	 * Crear time dialog.
 	 * 
@@ -80,13 +80,10 @@ public class DatePickerDialogBuilder implements OnDateSetListener {
 		new DatePickerDialog(CommonsActivity.getActivity(), this, year, monthOfYear, dayOfMonth).show();
 		this.codigo = codigo;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * android.app.DatePickerDialog.OnDateSetListener#onDateSet(android.widget
-	 * .DatePicker, int, int, int)
+	 * @see android.app.DatePickerDialog.OnDateSetListener#onDateSet(android.widget .DatePicker, int, int, int)
 	 */
 	@Override
 	public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
@@ -97,5 +94,5 @@ public class DatePickerDialogBuilder implements OnDateSetListener {
 		dialogDTO.setCodigo(this.codigo);
 		((LoadDialog) CommonsActivity.getActivity()).getterObjectDialog(dialogDTO);
 	}
-
+	
 }

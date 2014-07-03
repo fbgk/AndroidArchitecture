@@ -1,5 +1,6 @@
 package org.arqand.android.injection.api;
 
+import org.arqand.android.conversion.api.ConversionType;
 import org.arqand.android.injection.api.dto.InjectionFinalCacheDTO;
 
 import android.view.View;
@@ -8,7 +9,7 @@ import android.view.View;
  * From caches all the necessary information to make the injection part work.
  */
 public interface InitCacheService {
-
+	
 	/**
 	 * Creates the injection final cache.
 	 * 
@@ -19,7 +20,7 @@ public interface InitCacheService {
 	 * @return the injection final cache dto
 	 */
 	public InjectionFinalCacheDTO createInjectionFinalCache(Class<?> clazz, View view);
-
+	
 	/**
 	 * Factory conver type.
 	 * 
@@ -27,7 +28,7 @@ public interface InitCacheService {
 	 *            the conversion types
 	 */
 	public void factoryConverType(ConversionType<?, ?>... conversionTypes);
-
+	
 	/**
 	 * Factory view cache dto.
 	 * 
@@ -35,5 +36,5 @@ public interface InitCacheService {
 	 *            the view injection services
 	 */
 	public void factoryViewCache(ViewInjectionService<?, ?>... viewInjectionServices);
-
+	
 }

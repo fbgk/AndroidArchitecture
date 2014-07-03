@@ -16,40 +16,40 @@ import android.view.View;
  * The Class DialogBuilder.
  */
 public class DialogBuilder implements OnClickListener {
-
+	
 	/** The button left. */
 	private int				buttonLeft;
-
+	
 	/** The button left click. */
-
+	
 	private OnClickListener	buttonLeftClick;
-
+	
 	/** The button right. */
 	private int				buttonRight;
-
+	
 	/** The button right click. */
 	private OnClickListener	buttonRightClick;
-
+	
 	/** The dto. */
 	private DialogDTO<?>	dto;
-
+	
 	/** The icon. */
 	private int				icon;
-
+	
 	private LoadDialog		loadDialog;
-
+	
 	/** The message. */
 	private int				message;
-
+	
 	/** The title. */
 	private int				title;
-
+	
 	/** The view. */
 	private int				view;
-
+	
 	/** The view object. */
 	private View			viewObject;
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -62,7 +62,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(0, button, 0, message, null, null, 0, null, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -77,7 +77,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(0, button, 0, 0, null, null, view, dto, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -92,7 +92,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(0, button, 0, 0, null, null, view, dto, 0, loadDialog);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -107,7 +107,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, button, 0, message, null, null, 0, null, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -124,7 +124,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, button, 0, 0, null, null, view, dto, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -143,7 +143,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, button, 0, 0, null, null, view, dto, icon, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -162,7 +162,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, button, 0, 0, null, null, view, dto, icon, loadDialog);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -179,7 +179,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, button, 0, 0, null, null, view, dto, 0, loadDialog);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -196,7 +196,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, button, 0, message, null, null, 0, null, icon, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -215,7 +215,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -236,7 +236,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, icon, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -257,7 +257,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, icon, loadDialog);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -276,7 +276,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, 0, null, null, view, dto, 0, loadDialog);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -297,7 +297,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, 0, null, buttonLeftClick, view, dto, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -320,7 +320,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, 0, null, buttonLeftClick, view, dto, icon, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -339,7 +339,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, null, 0, null, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -360,7 +360,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, null, 0, null, icon, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -381,7 +381,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, buttonLeftClick, 0, null, 0, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Instantiates a new dialog builder.
 	 * 
@@ -404,7 +404,7 @@ public class DialogBuilder implements OnClickListener {
 		this.build(title, buttonLeft, buttonRight, message, buttonRightClick, buttonLeftClick, 0, null, icon, null);
 		this.show();
 	}
-
+	
 	/**
 	 * Builds the.
 	 * 
@@ -439,13 +439,10 @@ public class DialogBuilder implements OnClickListener {
 		this.icon = icon;
 		this.loadDialog = loadDialog;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * android.content.DialogInterface.OnClickListener#onClick(android.content
-	 * .DialogInterface, int)
+	 * @see android.content.DialogInterface.OnClickListener#onClick(android.content .DialogInterface, int)
 	 */
 	@Override
 	public void onClick(final DialogInterface dialog, final int which) {
@@ -465,7 +462,7 @@ public class DialogBuilder implements OnClickListener {
 		}
 		dialog.cancel();
 	}
-
+	
 	/**
 	 * On create dialog.
 	 * 
@@ -491,7 +488,7 @@ public class DialogBuilder implements OnClickListener {
 			CommonsInjection.getInjectionReflectionService().setterVisual(this.dto.getObject(), this.viewObject);
 			builder = builder.setView(this.viewObject);
 		}
-
+		
 		// Button left load
 		OnClickListener onClickListener = null;
 		if (this.buttonLeftClick == null) {
@@ -505,7 +502,7 @@ public class DialogBuilder implements OnClickListener {
 			onClickListener = this.buttonLeftClick;
 		}
 		builder = builder.setNegativeButton(this.buttonLeft, onClickListener);
-
+		
 		// Button right load
 		if (this.buttonRight != 0) {
 			OnClickListener onClickListenerRight = null;

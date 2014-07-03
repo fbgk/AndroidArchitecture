@@ -1,12 +1,14 @@
 package org.arqand.android.injection.api;
 
+import org.arqand.android.conversion.api.ConversionType;
+
 import android.view.View;
 
 /**
  * Interface for develop a Injection View Controller.
  */
 public interface InjectionReflectionService {
-
+	
 	/**
 	 * Factory conversion type.
 	 * 
@@ -18,7 +20,7 @@ public interface InjectionReflectionService {
 	 *            the conversion type
 	 */
 	public void factoryConversionType(ConversionType<?, ?>... conversionType);
-
+	
 	/**
 	 * Factory injection view.
 	 * 
@@ -30,7 +32,7 @@ public interface InjectionReflectionService {
 	 *            the injection services
 	 */
 	public void factoryInjectionView(ViewInjectionService<?, ?>... injectionServices);
-
+	
 	/**
 	 * Returns the object according to the view loaded in the main application.
 	 * 
@@ -41,7 +43,7 @@ public interface InjectionReflectionService {
 	 * @return the object Recovered Object Instance
 	 */
 	public <T> T getterVisual(Class<?> clazz);
-
+	
 	/**
 	 * Returns the object according to the view.
 	 * 
@@ -54,7 +56,7 @@ public interface InjectionReflectionService {
 	 * @return the object Recovered Object Instance
 	 */
 	public <T> T getterVisual(Class<?> clazz, View view);
-
+	
 	/**
 	 * Insert the object information to the main application view.
 	 * 
@@ -62,7 +64,7 @@ public interface InjectionReflectionService {
 	 *            The object to be treated
 	 */
 	public void setterVisual(Object object);
-
+	
 	/**
 	 * Insert the object information to the view.
 	 * 
@@ -72,5 +74,5 @@ public interface InjectionReflectionService {
 	 *            View data to be injected.
 	 */
 	public void setterVisual(Object object, View view);
-
+	
 }

@@ -20,19 +20,19 @@ import android.widget.ArrayAdapter;
  *            the generic type
  */
 public class ListViewAdapter<T> extends ArrayAdapter<T> {
-
+	
 	/** The vi. */
 	protected final LayoutInflater		layoutInflater	= (LayoutInflater) CommonsActivity.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+	
 	/** The lista adaptadores. */
 	protected final List<T>				listAdapter;
-
+	
 	/** The list view. Cache */
 	protected final Map<Integer, View>	mapView;
-
+	
 	/** The view id. */
 	protected final int					viewId;
-
+	
 	/**
 	 * Instantiates a new commons list view impl.
 	 * 
@@ -47,10 +47,9 @@ public class ListViewAdapter<T> extends ArrayAdapter<T> {
 		this.viewId = resource;
 		this.mapView = new HashMap<Integer, View>(loadList.size());
 	}
-
+	
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
 	 */
 	@Override

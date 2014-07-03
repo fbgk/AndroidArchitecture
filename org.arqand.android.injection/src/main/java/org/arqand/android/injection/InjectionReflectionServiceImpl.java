@@ -2,8 +2,21 @@ package org.arqand.android.injection;
 
 import org.arqand.android.commons.activity.CommonsActivity;
 import org.arqand.android.commons.reflections.CommonsReflections;
+import org.arqand.android.conversion.api.ConversionType;
+import org.arqand.android.conversion.converters.BigDecimalToString;
+import org.arqand.android.conversion.converters.BooleanToString;
+import org.arqand.android.conversion.converters.CalendarToString;
+import org.arqand.android.conversion.converters.DateToString;
+import org.arqand.android.conversion.converters.FloatToString;
+import org.arqand.android.conversion.converters.IntegerToString;
+import org.arqand.android.conversion.converters.LongToString;
+import org.arqand.android.conversion.converters.StringToBigDecimal;
+import org.arqand.android.conversion.converters.StringToBoolean;
+import org.arqand.android.conversion.converters.StringToDate;
+import org.arqand.android.conversion.converters.StringToFloat;
+import org.arqand.android.conversion.converters.StringToInteger;
+import org.arqand.android.conversion.converters.StringToLong;
 import org.arqand.android.field.cache.api.dto.FieldCacheDTO;
-import org.arqand.android.injection.api.ConversionType;
 import org.arqand.android.injection.api.InitCacheService;
 import org.arqand.android.injection.api.InjectionReflectionService;
 import org.arqand.android.injection.api.ViewInjectionService;
@@ -12,17 +25,6 @@ import org.arqand.android.injection.api.dto.InformationCacheDTO;
 import org.arqand.android.injection.api.dto.InjectionFinalCacheDTO;
 import org.arqand.android.injection.cache.CacheFinalServiceImpl;
 import org.arqand.android.injection.cache.api.CacheFinalService;
-import org.arqand.android.injection.conversion.BigDecimalToString;
-import org.arqand.android.injection.conversion.CalendarToString;
-import org.arqand.android.injection.conversion.DateToString;
-import org.arqand.android.injection.conversion.FloatToString;
-import org.arqand.android.injection.conversion.IntegerToString;
-import org.arqand.android.injection.conversion.LongToString;
-import org.arqand.android.injection.conversion.StringToBigDecimal;
-import org.arqand.android.injection.conversion.StringToDate;
-import org.arqand.android.injection.conversion.StringToFloat;
-import org.arqand.android.injection.conversion.StringToInteger;
-import org.arqand.android.injection.conversion.StringToLong;
 import org.arqand.android.injection.view.CheckableInjection;
 import org.arqand.android.injection.view.DatePickerInjection;
 import org.arqand.android.injection.view.ImageResourceInjection;
@@ -49,14 +51,13 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 	 */
 	public InjectionReflectionServiceImpl() {
 
-		this.factoryConversionType(new BigDecimalToString(), new CalendarToString(), new DateToString(), new FloatToString(), new IntegerToString(), new LongToString(), new StringToBigDecimal(), new StringToDate(), new StringToFloat(), new StringToInteger(), new StringToLong());
+		this.factoryConversionType(new BigDecimalToString(), new CalendarToString(), new DateToString(), new FloatToString(), new IntegerToString(), new LongToString(), new StringToBigDecimal(), new StringToDate(), new StringToFloat(), new StringToInteger(), new StringToLong(), new StringToBoolean(), new BooleanToString());
 		this.factoryInjectionView(new CheckableInjection(), new DatePickerInjection(), new ProgressBarInjection(), new TextViewInjection(), new TimePickerInjection(), new ImageResourceInjection(), new ImageStringInjection());
 
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.arqand.android.injection.api.InjectionReflectionService# factoryConversionType(org.arqand.android.injection.api.ConversionType[])
 	 */
 	@Override
@@ -66,17 +67,63 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.arqand.android.injection.api.InjectionReflectionService# factoryInjectionView (org.arqand.android.injection.api.ViewInjectionService[])
+	 * @see org.arqand.android.injection.api.InjectionReflectionService# factoryInjectionView
+	 * (org.arqand.android.injection.api.ViewInjectionService[])
 	 */
 	@Override
 	public void factoryInjectionView(final ViewInjectionService<?, ?>... injectionServices) {
 		this.initCacheService.factoryViewCache(injectionServices);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see org.arqand.android.injection.api.InjectionService#getterVisual(java.lang .Class)
+	 */
+	@Override
+	public <T> T getterVisual(final Class<?> clazz) {
+
+		final View view = CommonsActivity.getActivity().getWindow().getDecorView().getRootView();
+
+		return this.getObject(this.searchInjectionCache(clazz, view), view);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.arqand.android.injection.api.InjectionService#getterVisual(java.lang .Class, android.view.View)
+	 */
+	@Override
+	public <T> T getterVisual(final Class<?> clazz, final View view) {
+
+		return this.getObject(this.searchInjectionCache(clazz, view), view);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.arqand.android.injection.api.InjectionService#setterVisual(java.lang .Object)
+	 */
+	@Override
+	public void setterVisual(final Object object) {
+
+		final View view = CommonsActivity.getActivity().getWindow().getDecorView().getRootView();
+
+		this.setView(object, this.searchInjectionCache(object.getClass(), view), view);
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.arqand.android.injection.api.InjectionService#setterVisual(java.lang .Object, android.view.View)
+	 */
+	@Override
+	public void setterVisual(final Object object, final View view) {
+
+		this.setView(object, this.searchInjectionCache(object.getClass(), view), view);
+
+	}
+
 	/**
 	 * Gets the object.
-	 * 
+	 *
 	 * @param <T>
 	 *            Object getter
 	 * @param <K>
@@ -118,33 +165,9 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 		return object;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.arqand.android.injection.api.InjectionService#getterVisual(java.lang .Class)
-	 */
-	@Override
-	public <T> T getterVisual(final Class<?> clazz) {
-
-		final View view = CommonsActivity.getActivity().getWindow().getDecorView().getRootView();
-
-		return this.getObject(this.searchInjectionCache(clazz, view), view);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.arqand.android.injection.api.InjectionService#getterVisual(java.lang .Class, android.view.View)
-	 */
-	@Override
-	public <T> T getterVisual(final Class<?> clazz, final View view) {
-
-		return this.getObject(this.searchInjectionCache(clazz, view), view);
-	}
-
 	/**
 	 * Search the DTO in the cache, but found, creates a new one and puts it in the cache.
-	 * 
+	 *
 	 * @param clazz
 	 *            the clazz
 	 * @param view
@@ -169,35 +192,9 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 		return injectionFinalCacheDTO;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.arqand.android.injection.api.InjectionService#setterVisual(java.lang .Object)
-	 */
-	@Override
-	public void setterVisual(final Object object) {
-
-		final View view = CommonsActivity.getActivity().getWindow().getDecorView().getRootView();
-
-		this.setView(object, this.searchInjectionCache(object.getClass(), view), view);
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.arqand.android.injection.api.InjectionService#setterVisual(java.lang .Object, android.view.View)
-	 */
-	@Override
-	public void setterVisual(final Object object, final View view) {
-
-		this.setView(object, this.searchInjectionCache(object.getClass(), view), view);
-
-	}
-
 	/**
 	 * Sets the view.
-	 * 
+	 *
 	 * @param <T>
 	 *            Data type field
 	 * @param <L>
@@ -217,9 +214,9 @@ public class InjectionReflectionServiceImpl implements InjectionReflectionServic
 		if (injectionFinalCacheDTO != null) {
 			for (final InformationCacheDTO informationCacheDTO : injectionFinalCacheDTO.getListInformation()) {
 
-				FieldCacheDTO fieldCacheDTO = informationCacheDTO.getFieldCacheDTO();
+				final FieldCacheDTO fieldCacheDTO = informationCacheDTO.getFieldCacheDTO();
 
-				Visual visual = CommonsReflections.returnAnnotation(Visual.class, fieldCacheDTO.getField());
+				final Visual visual = CommonsReflections.returnAnnotation(Visual.class, fieldCacheDTO.getField());
 
 				if (visual != null && !visual.isPassword()) {
 

@@ -4,7 +4,7 @@ package org.arqand.android.injection.listadapter.api;
  * The Interface ListViewHeader.
  */
 public interface ListViewHeader {
-
+	
 	/**
 	 * Group view. Grouped by the object returned by the interface
 	 * 
@@ -15,7 +15,7 @@ public interface ListViewHeader {
 	 * @return the object
 	 */
 	public Object groupView(int itemViewID, int headerViewID);
-
+	
 	/**
 	 * Type item list. Type item in the list
 	 * 
@@ -26,5 +26,5 @@ public interface ListViewHeader {
 	 * @return the type list
 	 */
 	public TypeList typeItemList(int itemViewID, int headerViewID);
-
+	
 }

@@ -7,20 +7,20 @@ package org.arqand.android.modal.dto;
  *            the generic type
  */
 public class DialogDTO<T> {
-
+	
 	/** The codigo. */
 	private int	codigo;
-
+	
 	/** The object. */
 	private T	object;
-
+	
 	/**
 	 * The Constructor.
 	 */
 	public DialogDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	/**
 	 * The Constructor.
 	 * 
@@ -34,7 +34,7 @@ public class DialogDTO<T> {
 		this.codigo = codigo;
 		this.object = object;
 	}
-
+	
 	/**
 	 * Gets the codigo.
 	 * 
@@ -43,7 +43,7 @@ public class DialogDTO<T> {
 	public int getCodigo() {
 		return this.codigo;
 	}
-
+	
 	/**
 	 * Gets the object.
 	 * 
@@ -52,7 +52,7 @@ public class DialogDTO<T> {
 	public T getObject() {
 		return this.object;
 	}
-
+	
 	/**
 	 * Sets the codigo.
 	 * 
@@ -62,7 +62,7 @@ public class DialogDTO<T> {
 	public void setCodigo(final int codigo) {
 		this.codigo = codigo;
 	}
-
+	
 	/**
 	 * Sets the object.
 	 * 
@@ -72,10 +72,10 @@ public class DialogDTO<T> {
 	public void setObject(final T object) {
 		this.object = object;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "DialogDTO [codigo=" + this.codigo + ", object=" + this.object + "]";
 	}
-
+	
 }

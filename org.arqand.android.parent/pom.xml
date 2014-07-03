@@ -40,7 +40,7 @@
 		<!-- JDK -->
 		<version.jdk>1.6</version.jdk>
 		<!-- Android Plugin -->
-		<version.android.plugin>3.8.0</version.android.plugin>
+		<version.android.plugin>3.8.2</version.android.plugin>
 	</properties>
 
 	<dependencyManagement>
@@ -60,11 +60,13 @@
 
 	<modules>
 		<module>../org.arqand.android.core</module>
-		<module>../org.arqand.android.cache.field</module>
+		<module>../org.arqand.android.field.cache</module>
 		<module>../org.arqand.android.injection</module>
 		<module>../org.arqand.android.injection.modal</module>
-		<module>../org.arqand.android.animation</module>
-		<module>../org.arqand.android.orm</module>
+		<module>../org.arqand.android.conversion</module>
+		<module>../org.arqand.android.injection.orm</module>
+		<module>../org.arqand.android.animation.resource</module>
+		<module>../org.arqand.android.injection.orm.view</module>
 	</modules>
 
 	<build>
@@ -99,12 +101,15 @@
 					<version>${version.android.plugin}</version>
 					<configuration>
 						<sdk>
-							<path>/home/fbgk/Android/sdk/</path>
+							<path>/home/fbgk/Copy/AndroidSDK/</path>
 							<platform>${plataform.android}</platform>
 						</sdk>
 						<undeployBeforeDeploy>true</undeployBeforeDeploy>
 					</configuration>
 					<extensions>true</extensions>
+					<goals>
+	              		<goal>consume-aar</goal>
+	                </goals>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

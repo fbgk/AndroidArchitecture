@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.arqand.android</groupId>
+		<artifactId>org.arqand.android.parent</artifactId>
+		<version>0.0.1.RELEASE</version>
+		<relativePath>../org.arqand.android.parent/pom.xml</relativePath>
+	</parent>
+	<artifactId>org.arqand.android.conversion</artifactId>
+	<name>Conversion ArqAnd </name>
+	<description>Project which is all part of conversions</description>
+	<properties>
+			<!-- Version core  -->
+		<version.arqand.field.cache>0.0.1.RELEASE</version.arqand.field.cache>
+	</properties>
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.arqand.android</groupId>
+			<artifactId>org.arqand.android.field.cache</artifactId>
+			<version>${version.arqand.field.cache}</version>
+		</dependency>
+	</dependencies>
+</project>
